@@ -83,6 +83,20 @@
         "contactEmail": "contact@ipsumlorem.com",
         "contactPhone": "555-555-5555"
       }
+    },
+    {
+      "id": "0e06",
+      "title": "Test Job",
+      "type": "Full-Time",
+      "location": "Alabel, Saragani Province, Philippines",
+      "description": "Testing lang",
+      "salary": "Under $50K",
+      "company": {
+        "name": "WEV",
+        "description": "Great work",
+        "companyEmail": "jason@wev.com",
+        "companyPhone": "555-555-5555"
+      }
     }
   ]
 }
