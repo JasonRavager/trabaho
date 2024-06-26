@@ -1,9 +1,24 @@
+import PropTypes from "prop-types";
 import { FaArrowLeft, FaMapMarker } from "react-icons/fa";
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
-const JobPage = () => {
+const JobPage = ({ deleteJob }) => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const job = useLoaderData();
+
+  const onDeleteClick = (jobId) => {
+    const confirm = window.confirm(
+      "Are you sure you want to delete this listing?"
+    );
+
+    if (!confirm) return;
+
+    deleteJob(jobId);
+    toast.success("Job deleted successfully!");
+    navigate("/jobs");
+  };
 
   return (
     <>
@@ -77,7 +92,10 @@ const JobPage = () => {
                 >
                   Edit Job
                 </Link>
-                <button className="block w-full px-4 py-2 mt-4 font-bold text-white bg-red-500 rounded-full hover:bg-red-600 focus:outline-none focus:shadow-outline">
+                <button
+                  onClick={() => onDeleteClick(job.id)}
+                  className="block w-full px-4 py-2 mt-4 font-bold text-white bg-red-500 rounded-full hover:bg-red-600 focus:outline-none focus:shadow-outline"
+                >
                   Delete Job
                 </button>
               </div>
@@ -93,6 +111,10 @@ const jobLoader = async ({ params }) => {
   const response = await fetch(`/api/jobs/${params.id}`);
   const data = await response.json();
   return data;
+};
+
+JobPage.propTypes = {
+  deleteJob: PropTypes.func.isRequired,
 };
 
 export { JobPage as default, jobLoader };
