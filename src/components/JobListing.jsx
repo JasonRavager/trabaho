@@ -37,7 +37,7 @@ const JobListing = ({ job }) => {
             {job.location}
           </div>
           <Link
-            to={`./${job.id}`}
+            to={`/jobs/${job.id}`}
             className="h-[36px] bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm"
           >
             Read More
@@ -49,8 +49,8 @@ const JobListing = ({ job }) => {
 };
 
 JobListing.propTypes = {
-  id: PropTypes.number.isRequired,
   job: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,

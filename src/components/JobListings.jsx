@@ -46,7 +46,7 @@ const JobListings = ({ isHome = false }) => {
 };
 
 JobListings.propTypes = {
-  isHome: PropTypes.bool,
+  isHome: PropTypes.string,
 };
 
 export default JobListings;
